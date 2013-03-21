@@ -1,4 +1,5 @@
 dist/
 build/
 wsgi_liveserver.egg-info/
+MANIFEST
 *.pyc
