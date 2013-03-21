@@ -19,6 +19,7 @@ setup(
     url='http://github.com/jerrykan/wsgi-liveserver/',
     long_description=read('README.rst'),
     py_modules=['wsgi_liveserver'],
+    platforms='any',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
