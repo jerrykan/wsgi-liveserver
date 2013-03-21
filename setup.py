@@ -11,7 +11,7 @@ def read(filename):
 setup(
     name='wsgi-liveserver',
     version=wsgi_liveserver.__version__,
-    description='',
+    description='start/stop WSGI applications in the background for testing',
     author=wsgi_liveserver.__author__,
     author_email='john@jerrykan.com',
     license='GPLv3',

@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-wsgi-liveserver is a ...
+wsgi-liveserver provides a simple LiverServerTestCase class that can be used to
+help start a web server in the background to serve a WSGI compliant application
+for use with testing. Generally it will be used in conjuction with something
+like Selenium to perform a series of functional tests using a browser.
 
+Licensed under the GNU GPL v3
+
+Copyright (c) 2013 John Kristensen (unless explicitly stated otherwise).
 """
 
 __author__ = 'John Kristesen'
