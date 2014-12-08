@@ -16,7 +16,6 @@ __license__ = 'GPLv3'
 
 import threading
 import socket
-import time
 import unittest
 from wsgiref.simple_server import make_server, WSGIRequestHandler
 
@@ -74,9 +73,6 @@ class LiveServerTestCase(unittest.TestCase):
         # Start the test server in the background
         self._thread = threading.Thread(target=self._server.serve_forever)
         self._thread.start()
-
-        # Give the test server a bit of time to prepare for handling requests
-        time.sleep(1)
 
     def _post_teardown(self):
         """Stop the test server."""
