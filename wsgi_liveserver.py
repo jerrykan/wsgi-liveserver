@@ -14,7 +14,7 @@ __author__ = 'John Kristesen'
 __version__ = '0.1'
 __license__ = 'GPLv3'
 
-import multiprocessing
+import threading
 import socket
 import time
 import unittest
@@ -48,37 +48,39 @@ class LiveServerTestCase(unittest.TestCase):
 
     def _pre_setup(self):
         """Setup and start the test server in the background."""
-        server = None
+        self._server = None
         port_range = (8080, 8090)
 
         self.host = 'localhost'
         self.port = port_range[0]
-        self._process = None
+        self._thread = None
 
         # Get the app
         self.app = self.create_app()
 
         # Cycle through the port range to find a free port
-        while server is None and self.port <= port_range[1]:
+        while self._server is None and self.port <= port_range[1]:
             try:
-                server = make_server(self.host, self.port, self.app,
+                self._server = make_server(self.host, self.port, self.app,
                                      handler_class=QuietHandler)
             except socket.error as e:
                 self.port += 1
 
         # No free port, raise an exception
-        if server is None:
+        if self._server is None:
             raise socket.error('Ports {0}-{1} are all already in use'.format(
                 *port_range))
 
         # Start the test server in the background
-        self._process = multiprocessing.Process(target=server.serve_forever)
-        self._process.start()
+        self._thread = threading.Thread(target=self._server.serve_forever)
+        self._thread.start()
 
         # Give the test server a bit of time to prepare for handling requests
         time.sleep(1)
 
     def _post_teardown(self):
         """Stop the test server."""
-        if self._process is not None:
-            self._process.terminate()
+        if self._thread is not None:
+            self._server.shutdown()
+            self._thread.join()
+            del self._server

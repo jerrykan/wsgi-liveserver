@@ -10,8 +10,8 @@ class LiveServerTest(LiveServerTestCase):
         return demo_app
 
     def test_server_running(self):
-        self.assertNotEqual(self._process, None)
-        self.assertTrue(self._process.is_alive())
+        self.assertNotEqual(self._thread, None)
+        self.assertTrue(self._thread.is_alive())
 
     def test_server_listening(self):
         response = urllib2.urlopen(self.url_base())
