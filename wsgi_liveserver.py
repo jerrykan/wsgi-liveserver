@@ -62,7 +62,7 @@ class LiveServerTestCase(unittest.TestCase):
             try:
                 self._server = make_server(self.host, self.port, self.app,
                                      handler_class=QuietHandler)
-            except socket.error as e:
+            except socket.error:
                 self.port += 1
 
         # No free port, raise an exception
