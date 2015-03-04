@@ -10,7 +10,7 @@ Licensed under the GNU GPL v3
 Copyright (c) 2013 John Kristensen (unless explicitly stated otherwise).
 """
 
-__author__ = 'John Kristesen'
+__author__ = 'John Kristensen'
 __version__ = '0.2'
 __license__ = 'GPLv3'
 
