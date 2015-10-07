@@ -1,8 +1,15 @@
 import unittest
-import urllib2
 from wsgiref.simple_server import demo_app
 
 from wsgi_liveserver import LiveServerTestCase
+
+# Python 2/3 compatibility
+try:
+    # Python 3
+    from urllib.request import urlopen
+except ImportError:
+    # Python 2
+    from urllib2 import urlopen
 
 
 class LiveServerTest(LiveServerTestCase):
@@ -14,9 +21,9 @@ class LiveServerTest(LiveServerTestCase):
         self.assertTrue(self._thread.is_alive())
 
     def test_server_listening(self):
-        response = urllib2.urlopen(self.url_base())
+        response = urlopen(self.url_base())
         self.assertEqual(response.code, 200)
-        self.assertTrue('Hello world!' in response.read())
+        self.assertTrue(b'Hello world!' in response.read())
 
 
 if __name__ == '__main__':
