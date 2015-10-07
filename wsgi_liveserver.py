@@ -78,5 +78,6 @@ class LiveServerTestCase(unittest.TestCase):
         """Stop the test server."""
         if self._thread is not None:
             self._server.shutdown()
+            self._server.server_close()
             self._thread.join()
             del self._server
