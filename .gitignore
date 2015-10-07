@@ -1,3 +1,4 @@
+.tox/
 dist/
 build/
 wsgi_liveserver.egg-info/
