@@ -26,6 +26,9 @@ class QuietHandler(WSGIRequestHandler):
 
 
 class LiveServerTestCase(unittest.TestCase):
+
+    port_range = (8080, 8090)
+
     def create_app(self):
         """Create your wsgi app and return it."""
         raise NotImplementedError
@@ -48,17 +51,16 @@ class LiveServerTestCase(unittest.TestCase):
     def _pre_setup(self):
         """Setup and start the test server in the background."""
         self._server = None
-        port_range = (8080, 8090)
 
         self.host = 'localhost'
-        self.port = port_range[0]
+        self.port = self.port_range[0]
         self._thread = None
 
         # Get the app
         self.app = self.create_app()
 
         # Cycle through the port range to find a free port
-        while self._server is None and self.port <= port_range[1]:
+        while self._server is None and self.port <= self.port_range[1]:
             try:
                 self._server = make_server(self.host, self.port, self.app,
                                      handler_class=QuietHandler)
@@ -68,7 +70,7 @@ class LiveServerTestCase(unittest.TestCase):
         # No free port, raise an exception
         if self._server is None:
             raise socket.error('Ports {0}-{1} are all already in use'.format(
-                *port_range))
+                *self.port_range))
 
         # Start the test server in the background
         self._thread = threading.Thread(target=self._server.serve_forever)
