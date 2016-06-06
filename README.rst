@@ -20,11 +20,11 @@ Standard Library.
 
 Usage
 -----
-The wsgi-liveserver LiveServerTestCase can be used instead of unittest.TestCase
-for any tests that require a running web server. Simply define a create_app()
-method that returns the wsgi application that you want to have started up in
-the background, then write your tests as normal. LiveServerTestCase will handle
-starting and stopping the server for you.
+The wsgi-liveserver `LiveServerTestCase` can be used instead of
+`unittest.TestCase` for any tests that require a running web server. Simply
+define a `create_app()` method that returns the WSGI application that you want
+to have started up in the background, then write your tests as normal.
+`LiveServerTestCase` will handle starting and stopping the server for you.
 
 Port Range
 ~~~~~~~~~~
