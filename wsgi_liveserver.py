@@ -9,15 +9,14 @@ Licensed under the GNU GPL v3
 
 Copyright (c) 2013 John Kristensen (unless explicitly stated otherwise).
 """
-
-__author__ = 'John Kristensen'
-__version__ = '0.3'
-__license__ = 'GPLv3'
-
 import threading
 import socket
 import unittest
 from wsgiref.simple_server import make_server, WSGIRequestHandler
+
+__author__ = 'John Kristensen'
+__version__ = '0.3'
+__license__ = 'GPLv3'
 
 
 class QuietHandler(WSGIRequestHandler):
@@ -63,7 +62,7 @@ class LiveServerTestCase(unittest.TestCase):
         while self._server is None and self.port <= self.port_range[1]:
             try:
                 self._server = make_server(self.host, self.port, self.app,
-                                     handler_class=QuietHandler)
+                                           handler_class=QuietHandler)
             except socket.error:
                 self.port += 1
 
