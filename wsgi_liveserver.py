@@ -15,7 +15,7 @@ import unittest
 from wsgiref.simple_server import make_server, WSGIRequestHandler
 
 __author__ = 'John Kristensen'
-__version__ = '0.3'
+__version__ = '0.3.1'
 __license__ = 'GPLv3'
 
 

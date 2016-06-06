@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-0.3.1 (????-??-??)
+0.3.1 (2016-06-06)
 ------------------
 * Added: the ability to configure the `port_range`
 
