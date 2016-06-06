@@ -26,5 +26,20 @@ class LiveServerTest(LiveServerTestCase):
         self.assertTrue(b'Hello world!' in response.read())
 
 
+class ConfiguredPortTest(LiveServerTestCase):
+    port_range = (20080, 20090)
+
+    def create_app(self):
+        return demo_app
+
+    def test_configured_port(self):
+        self.assertEqual(self.port, 20080)
+
+    def test_server_listening(self):
+        response = urlopen(self.url_base())
+        self.assertEqual(response.code, 200)
+        self.assertTrue(b'Hello world!' in response.read())
+
+
 if __name__ == '__main__':
     unittest.main()
