@@ -1,2 +1,5 @@
+include AUTHORS.rst
+include CHANGELOG.rst
+include LICENSE
 include README.rst
 include tests.py
