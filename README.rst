@@ -26,6 +26,13 @@ method that returns the wsgi application that you want to have started up in
 the background, then write your tests as normal. LiveServerTestCase will handle
 starting and stopping the server for you.
 
+Port Range
+~~~~~~~~~~
+By default `LiveServerTestCase` will attempt to listen on the first available
+port in the range 8080-8090 (inclusive). If you wish the LiveServer to attempt
+to listen on a different range of ports this can be done by setting the
+`port_range` class attribute (see the example below).
+
 
 Example
 -------
@@ -41,6 +48,8 @@ The following is a very basic example of using wsgi-liveserver with the
     from wsgi_liveserver import LiveServerTestCase
 
     class SimpleTest(LiveServerTestCase):
+        port_range = (9001, 9010)  # default is (8080, 8090)
+
         def create_app(self):
             return demo_app
 
